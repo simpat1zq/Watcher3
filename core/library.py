@@ -754,7 +754,7 @@ class Manage(object):
             logging.debug('More information needed, searching TheMovieDB for {}'.format(tmdbid))
             tmdb_data = self.tmdb._search_tmdbid(tmdbid)
             if not tmdb_data:
-                response['error'] = 'Unable to find {} on TMDB.'.format(tmdbid)
+                response['error'] = _('Unable to find {} on TMDB.').format(tmdbid)
                 return response
             else:
                 tmdb_data = tmdb_data[0]
@@ -766,7 +766,7 @@ class Manage(object):
 
             response['response'] = False
 
-            response['error'] = '{} already exists in library.'.format(movie['title'])
+            response['error'] = _('{} already exists in library.').format(movie['title'])
             return response
 
         movie['quality'] = movie.get('quality', 'Default')
@@ -777,7 +777,7 @@ class Manage(object):
 
         if not core.sql.write('MOVIES', movie):
             response['response'] = False
-            response['error'] = 'Could not write to database.'
+            response['error'] = _('Could not write to database.')
             return response
         else:
             if poster_path:
@@ -788,7 +788,7 @@ class Manage(object):
                 threading.Thread(target=self.searcher._t_search_grab, args=(movie,)).start()
 
             response['response'] = True
-            response['message'] = '{} {} added to library.'.format(movie['title'], movie['year'])
+            response['message'] = _('{} {} added to library.').format(movie['title'], movie['year'])
             plugins.added(movie['title'], movie['year'], movie['imdbid'], movie['quality'])
 
             return response
@@ -807,10 +807,10 @@ class Manage(object):
         removed = core.sql.remove_movie(imdbid)
 
         if removed is True:
-            response = {'response': True, 'removed': imdbid}
+            response = {'response': True, 'message': '<b>{}</b> removed from library.'.format(imdbid), 'removed': imdbid}
             threading.Thread(target=self.poster.remove_poster, args=(imdbid,)).start()
         elif removed is False:
-            response = {'response': False, 'error': 'unable to remove {}'.format(imdbid)}
+            response = {'response': False, 'error': 'Unable to remove {} from database.'.format(imdbid)}
         elif removed is None:
             response = {'response': False, 'error': '{} does not exist'.format(imdbid)}
 

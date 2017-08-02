@@ -66,12 +66,17 @@ function select_attrib(event, elem, key, value){
     }
 }
 
+function _none_selected(){
+    // TODO: localize
+    $.notify({message: "No movies are selected."}, {type: "warning"})
+}
+
 function backlog_search(event, elem){
     // Preps call to _manager_request
     var movies = _selected_movies();
 
     if(movies.length == 0){
-        $.notify({message: "No movies are selected."}, {type: "warning"})
+        _none_selected()
         return
     }
 
@@ -83,7 +88,7 @@ function refresh_metadata(event, elem){
     var movies = _selected_movies();
 
     if(movies.length == 0){
-        $.notify({message: "No movies are selected."}, {type: "warning"})
+        _none_selected()
         return
     }
 
@@ -95,13 +100,14 @@ function change_quality(event, elem){
     var movies = _selected_movies();
 
     if(movies.length == 0){
-        $.notify({message: "No movies are selected."}, {type: "warning"})
+        _none_selected()
         return
     }
 
     var quality = $("div#modal_quality select#quality").val();
 
     if(!quality){
+        // TODO: localize
         $.notify({message: "Select a new Quality Profile."}, {type: "warning"})
         return
     }
@@ -114,7 +120,7 @@ function reset_movies(event, elem){
     var movies = _selected_movies();
 
     if(movies.length == 0){
-        $.notify({message: "No movies are selected."}, {type: "warning"})
+        _none_selected()
         return
     }
 
@@ -128,7 +134,7 @@ function remove_movies(event, elem){
     var movies = _selected_movies();
 
     if(movies.length == 0){
-        $.notify({message: "No movies are selected."}, {type: "warning"})
+        _none_selected()
         return
     }
 
@@ -206,6 +212,7 @@ function _manager_request($modal, url, payload){
     })
     .done(function(){
         $modal_footer.slideDown();
+        // TODO: localize
         $modal_p.html("Finished -- Refresh page to see changes.");
     })
     .fail(function(data){
