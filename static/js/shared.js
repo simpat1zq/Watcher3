@@ -1,7 +1,7 @@
 $(document).ready(function(){
     url_base = $("meta[name='url_base']").attr("content");
     show_notifs = JSON.parse($("meta[name='enable_notifs']").attr("content") || "true");
-
+    language = $("meta[name='language']").attr("content") || "en";
     if(show_notifs){
         notifs = JSON.parse($("textarea#notifications_json").text());
 

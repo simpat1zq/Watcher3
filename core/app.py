@@ -204,7 +204,7 @@ class App(object):
         return App.fourohfour_template.render(**self.defaults())
 
     def head(self):
-        return App.head_template.render(url_base=core.URL_BASE, uitheme=core.CONFIG['Server']['uitheme'], notifications=json.dumps([i for i in core.NOTIFICATIONS if i is not None]))
+        return App.head_template.render(url_base=core.URL_BASE, uitheme=core.CONFIG['Server']['uitheme'], notifications=json.dumps([i for i in core.NOTIFICATIONS if i is not None]), language=core.LANGUAGE)
 
     def nav_bar(self, current=None):
         show_logout = True if cherrypy.session.get(core.SESSION_KEY) else False

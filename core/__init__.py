@@ -55,6 +55,7 @@ SOURCES = ('BluRay-4K', 'BluRay-1080P', 'BluRay-720P',
            'Telesync-SD', 'CAM-SD')
 
 LANGUAGES = {}
+LANGUAGE = 'en'
 
 # Module instances
 sql = None
