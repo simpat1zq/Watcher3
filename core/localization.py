@@ -29,3 +29,4 @@ def install(**kwargs):
     lang = kwargs.get('language', core.CONFIG['Server']['language'])
 
     core.LANGUAGES[lang].install()
+    core.LANGUAGE = lang
