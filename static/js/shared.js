@@ -80,3 +80,17 @@ function _start_update(event){
         $.notify({message: err}, {type: "danger", delay: 0});
     });
 }
+
+
+function _(string){
+    /* Localization function
+    string (str): string to translate
+    */
+
+    if(language == "en"){
+        return string;
+    } else {
+        return translations[language][string] || string;
+    }
+}
+
