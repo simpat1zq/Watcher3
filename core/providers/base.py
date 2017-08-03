@@ -1,6 +1,7 @@
 import xml.etree.cElementTree as ET
 import urllib.parse
 import logging
+from gettext import gettext as _
 
 import core
 from core.helpers import Url
@@ -226,13 +227,13 @@ class NewzNabProvider(object):
             error = ET.fromstring(response)
             if error.attrib['description'] == 'Missing parameter':
                 logging.info('Newz/TorzNab connection test successful.')
-                return {'response': True, 'message': 'Connection successful.'}
+                return {'response': True, 'message': _('Connection successful.')}
             else:
                 logging.error('Newz/TorzNab connection test failed. {}'.format(error.attrib['description']))
                 return {'response': False, 'error': error.attrib['description']}
         elif 'unauthorized' in response.lower():
             logging.error('Newz/TorzNab connection failed - Incorrect API key.')
-            return {'response': False, 'error': 'Incorrect API key.'}
+            return {'response': False, 'error': _('Incorrect API key.')}
         else:
             logging.info('Newz/TorzNab connection test successful.')
-            return {'response': True, 'message': 'Connection successful.'}
+            return {'response': True, 'message': _('Connection successful.')}

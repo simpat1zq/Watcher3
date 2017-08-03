@@ -29,9 +29,9 @@ function test_indexer(event, elem){
                                              "mode": mode})
     .done(function(response){
         if(response["response"] == true){
-            $.notify({message: `Connection Successful.`})
+            $.notify({message: response["message"]})
         } else {
-            $.notify({message: `${response['error']}`}, {type: "danger"})
+            $.notify({message: response['error']}, {type: "danger"})
         }
     })
     .fail(function(data){

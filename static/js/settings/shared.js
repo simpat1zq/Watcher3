@@ -71,7 +71,7 @@ function save_settings(event, elem){
             // TODO:
             $.notify({message: `Settings saved.`})
         } else {
-            $.notify({message: `${response['error']}`}, {type: "danger", delay: 0})
+            $.notify({message: response['error']}, {type: "danger", delay: 0})
         }
     })
     .fail(function(data){

@@ -111,7 +111,7 @@ function create_backup(event, elem){
             // TODO:
             $.notify({message: `Backup created as:<br/>${response["zipfile"]}`}, {delay: 0})
         } else {
-            $.notify({message: `${response['error']}`}, {type: "danger", delay: 0})
+            $.notify({message: response['error']}, {type: "danger", delay: 0})
         }
     })
     .fail(function(data){
@@ -153,8 +153,8 @@ function upload_restore_zip(event, elem){
     })
     .on("lu:errors", function (e, errors) {
         if(errors[0]["errors"][0]["type"] == "type"){
-            $.notify({message: "Please select a ZIP file."}, {type: "warning"})
             // TODO:
+            $.notify({message: _("Please select a ZIP file.")}, {type: "warning"})
         } else {
             $.each(errors[0]["errors"], function(i, err){
                 $.notify({message: `Error: ${err["type"]}`}, {type: "warning"})

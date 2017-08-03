@@ -185,7 +185,7 @@ class Ajax(object):
         try:
             logging.debug('Finished file for {} is {}'.format(imdbid, f))
             os.unlink(f)
-            return {'response': True, 'file': f}
+            return {'response': True, 'message': _('Deleted movie file {}').format(f), 'file': f}
         except Exception as e:
             logging.error('Unable to delete file {}'.format(f), exc_info=True)
             return {'response': False, 'error': str(e)}

@@ -4,6 +4,7 @@ import datetime
 import logging
 import csv
 import threading
+from gettext import gettext as _
 from core import searchresults, plugins, searcher
 import core
 from core.movieinfo import TMDB
@@ -11,7 +12,6 @@ from core.helpers import Url
 from hachoir.parser import createParser
 from hachoir.metadata import extractMetadata
 import PTN
-
 
 logging = logging.getLogger(__name__)
 
