@@ -10,6 +10,7 @@ function edit_plugin_conf(event, elem, folder, filename){
     $.post(url_base + "/ajax/get_plugin_conf", {"folder": folder, "conf": filename})
     .done(function(config_html){
         if(!config_html){
+            // TODO:
             $.notify({message: "Unable to read plugin config."}, {type: "danger"})
             return false
         }
@@ -33,6 +34,7 @@ function edit_plugin_conf(event, elem, folder, filename){
 
     })
     .fail(function(response){
+        // TODO:
         $.notify({message: "Unable to read plugin config."}, {type: "danger"})
         return
     });

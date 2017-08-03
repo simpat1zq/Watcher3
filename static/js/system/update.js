@@ -62,6 +62,7 @@ $.ajax(url_base + '/ajax/update_server', {
                     $("div.updating").fadeIn();
                 }
                 else if(r["status"] == "complete"){
+                    // TODO:
                     $.notify({message: "Update successful."}, {delay: 0});
                     $("div.updating").text("Restarting");
                     redirect();
@@ -97,6 +98,7 @@ function redirect(){
             });
         } else {
             clearInterval(check);
+            // TODO:
             $.notify({title: "<u>Timout Exceeded</u><br/>", message: "Watcher is taking too long to restart. Please check your logs and restart manually."}, {type: "warning", delay: 0})
             $thinker.css("opacity", 0);
         }

@@ -108,6 +108,7 @@ function create_backup(event, elem){
     $.post(url_base + "/ajax/create_backup", {})
     .done(function(response){
         if(response["response"] == true){
+            // TODO:
             $.notify({message: `Backup created as:<br/>${response["zipfile"]}`}, {delay: 0})
         } else {
             $.notify({message: `${response['error']}`}, {type: "danger", delay: 0})
@@ -153,6 +154,7 @@ function upload_restore_zip(event, elem){
     .on("lu:errors", function (e, errors) {
         if(errors[0]["errors"][0]["type"] == "type"){
             $.notify({message: "Please select a ZIP file."}, {type: "warning"})
+            // TODO:
         } else {
             $.each(errors[0]["errors"], function(i, err){
                 $.notify({message: `Error: ${err["type"]}`}, {type: "warning"})
@@ -174,6 +176,7 @@ function upload_restore_zip(event, elem){
     .on("lu:success", function (e, response) {
         response = JSON.parse(response);
         if(response["response"] == true){
+            // TODO:
             $.notify({message: "Restore finished, restarting..."});
             setTimeout(function(){
                 window.location = url_base + "/system/restart?e=false";
@@ -215,6 +218,7 @@ function execute_task(event, elem, name){
         $tr[0].innerHTML = row;
 
         if(response["response"] == true){
+            // TODO:
             $.notify({message: `Finished task ${name}.`})
             $.each(response["notifications"], function(i, notif){
                 notif[1]["onClose"] = remove_notif;

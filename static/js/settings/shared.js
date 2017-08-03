@@ -57,6 +57,7 @@ function save_settings(event, elem){
 
 
     if(settings == false){
+        // TODO:
         $.notify({message: "Please fill in all highlighted fields."}, {type: "warning"})
         $i.removeClass("mdi-circle-outline animated").addClass("mdi-content-save");
         return false
@@ -67,6 +68,7 @@ function save_settings(event, elem){
     })
     .done(function(response){
         if(response["response"] == true){
+            // TODO:
             $.notify({message: `Settings saved.`})
         } else {
             $.notify({message: `${response['error']}`}, {type: "danger", delay: 0})

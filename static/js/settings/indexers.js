@@ -14,6 +14,7 @@ function test_indexer(event, elem){
     var url = $tr.find("input[data-id='url']").val();
 
     if(!url){
+        // TODO: localize
         $.notify({message: "Enter an indexer URL."}, {type: "warning"})
         return
     }
